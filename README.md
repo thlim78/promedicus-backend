@@ -1,23 +1,53 @@
-After the huge response and viewership for my earlier article https://dzone.com/articles/spring-boot-restful-web-service-example I have decided to write a new article with all the REST calls example respectively GET, POST, PUT and DELETE. 
+Overview
+========
+This promedicus-backend is developed using the latest spring-boot v2.1.14. It requires Java 8 to build and run. It provides the below rest-endpoints. It is configured to listen on port 8080 and its context path is defined as /admission-backend. When it starts up, seeding records will be automatically pre-populated for showcasing purpose. 
 
-Prerequisites for this project:
+a. GET http://localhost:8080/admission-backend/admissions/ - to retrieve a list of admissions.
+b. GET http://localhost:8080/admission-backend/admissions/{id} - to retrieve an existing admission record by id.
+c. POST http://localhost:8080/admission-backend/admissions/ - to create a new admission record.
+d. PUT http://localhost:8080/admission-backend/admissions/{id} - to update an existing admission record by id.
+e. DELETE http://localhost:8080/admission-backend/admissions/{id} - to delete an existing admission record by id.
 
-1. If you have Eclipse, download the STS plug-in from here https://marketplace.eclipse.org/content/spring-tools-aka-spring-ide-and-spring-tool-suite
 
-2. If you don’t have Eclipse, download STS from here https://spring.io/guides/gs/sts/
+Steps To set up the project
+===========================
+1. mvn clean install
+2. java -jar target/promedicus-backend-0.0.1-SNAPSHOT.jar
 
-3. Download the latest JDK from here http://www.oracle.com/technetwork/java/javase/downloads/index.html
 
-4. Also for testing please download and install SOAPUI tool from here https://www.soapui.org/downloads/soapui.html
-
-The first example I am going to explain is about HTTP GET request, second example will be about HTTP POST request, third example about HTTP PUT request and fourth example is for HTTP DELETE request. In these entire examples I am going to use JSON Representation.
-
-Before checkout this project create a folder under C drive like C:\Projects
- 
-Now open command prompt
-
-1. cd c:\Projects
-2. check out the mail branch
-3. cd spring-boot-rest-2
-4. Execute - mvnw clean package
-5. start the server - java -jar target\spring-boot-rest-2-0.0.1-SNAPSHOT.jar
+Creation of External Admission
+===============================
+curl -X POST \
+  http://localhost:8080/admission-backend/admissions/ \
+  -H 'Accept: */*' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Type: application/json' \
+  -H 'Host: localhost:8080' \
+  -H 'Postman-Token: 9661ff5e-93da-42bf-9b89-f354f7161645,bf549a03-2007-4f56-b637-994191602db0' \
+  -H 'User-Agent: PostmanRuntime/7.11.0' \
+  -H 'accept-encoding: gzip, deflate' \
+  -H 'cache-control: no-cache' \
+  -H 'content-length: 239' \
+  -d '    {
+        "dateAdmission": null,
+        "patientName": "Patient Tom",
+        "dateOfBirth": "2010-04-13T12:00:00",
+        "gender": "MALE",
+        "category": "OUTPATIENT",
+        "source": "Hospital external system"
+    }'
+    
+Output from the above curl command
+==================================
+{
+    "@UUID": "52e7592c-2fc1-4606-babb-07080c34da2e",
+    "id": 6,
+    "dateAdmission": "2019-04-24T21:10:04.255",
+    "patientName": "Patient Tom",
+    "dateOfBirth": "2010-04-13",
+    "gender": "Male",
+    "category": "Outpatient",
+    "source": "Hospital external system"
+}
+    
