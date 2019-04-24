@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="tom.lim" id="201904201300">
+        <createTable tableName="admission">
+            <column autoIncrement="true" name="id" type="BIGINT(19)">
+                <constraints primaryKey="true" primaryKeyName="admission_pk"/>
+            </column>
+            <column name="admission_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patient_name" type="VARCHAR(300)"/>
+            <column name="date_of_birth" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gender" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="source" type="VARCHAR(300)"/>
+            <column name="version" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

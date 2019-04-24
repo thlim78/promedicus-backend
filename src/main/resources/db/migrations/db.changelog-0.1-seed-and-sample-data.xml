@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+  <changeSet author="tom.lim" id="201904201339" runAlways="true">
+    <sql dbms="h2">
+        SET REFERENTIAL_INTEGRITY FALSE
+    </sql>
+  </changeSet>
+
+  <changeSet author="tom.lim" id="201904201340" runOnChange="true" context="seed">
+    <delete tableName="admission"/>
+    <loadData tableName="admission" file="/db/datasets/admission.csv">
+      <column name="ID" header="ID" type="NUMERIC"/>
+      <column name="VERSION" header="VERSION" type="NUMERIC"/>
+      <column name="ADMISSION_DATE" header="ADMISSION_DATE" type="DATETIME"/>
+      <column name="PATIENT_NAME" header="PATIENT_NAME" type="STRING"/>
+      <column name="DATE_OF_BIRTH" header="DATE_OF_BIRTH" type="DATETIME"/>
+      <column name="GENDER" header="GENDER" type="STRING"/>
+      <column name="CATEGORY" header="CATEGORY" type="STRING"/>
+    </loadData>
+  </changeSet>
+
+  <changeSet author="tom.lim" id="201904201341" runAlways="true" failOnError="true" runInTransaction="true">
+    <sql dbms="h2">
+        SET REFERENTIAL_INTEGRITY TRUE;
+    </sql>
+  </changeSet>
+
+</databaseChangeLog>
