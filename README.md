@@ -3,9 +3,13 @@ Overview
 This promedicus-backend is developed using the latest spring-boot v2.1.14. It requires Java 8 to build and run. It provides the below rest-endpoints. It is configured to listen on port 8080 and its context path is defined as /admission-backend. When it starts up, seeding records will be automatically pre-populated for showcasing purpose. 
 
 a. GET http://localhost:8080/admission-backend/admissions/ - to retrieve a list of admissions.
+
 b. GET http://localhost:8080/admission-backend/admissions/{id} - to retrieve an existing admission record by id.
+
 c. POST http://localhost:8080/admission-backend/admissions/ - to create a new admission record.
+
 d. PUT http://localhost:8080/admission-backend/admissions/{id} - to update an existing admission record by id.
+
 e. DELETE http://localhost:8080/admission-backend/admissions/{id} - to delete an existing admission record by id.
 
 
